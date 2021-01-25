@@ -17,6 +17,8 @@
   init();
 
   function init() {
+    const MODEL_PATH =
+      'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1376484/stacy_lightweight.glb';
     const canvas = document.querySelector('#c');
     const backgroundColor = 0xf1f1f1;
 
@@ -41,6 +43,23 @@
     camera.position.z = 30;
     camera.position.x = 0;
     camera.position.y = -3;
+
+    var loader = new THREE.GLTFLoader();
+
+    loader.load(
+      MODEL_PATH,
+      function (gltf) {
+        // A lot is going to happen here
+        model = gltf.scene;
+        let fileAnimations = gltf.animations;
+
+        scene.add(model);
+      },
+      undefined, // We don't need this function
+      function (error) {
+        console.error(error);
+      }
+    );
 
     // Add lights
     let hemiLight = new THREE.HemisphereLight(0xffffff, 0xffffff, 0.61);
