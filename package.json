@@ -1,0 +1,19 @@
+{
+  "name": "spiral-out",
+  "version": "1.0.0",
+  "description": "A new way of journaling",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/web-dev-dave/spiral-out.git"
+  },
+  "author": "David Steel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/web-dev-dave/spiral-out/issues"
+  },
+  "homepage": "https://github.com/web-dev-dave/spiral-out#readme"
+}
