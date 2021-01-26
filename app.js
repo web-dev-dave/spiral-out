@@ -44,6 +44,19 @@
     camera.position.x = 0;
     camera.position.y = -3;
 
+    // Load and apply texture
+    let stacy_txt = new THREE.TextureLoader().load(
+      'https://s3-us-west-2.amazonaws.com/s.cdpn.io/1376484/stacy.jpg'
+    );
+
+    stacy_txt.flipY = false; // we flip the texture so that its the right way up
+
+    const stacy_mtl = new THREE.MeshPhongMaterial({
+      map: stacy_txt,
+      color: 0xffffff,
+      skinning: true
+    });
+
     var loader = new THREE.GLTFLoader();
 
     loader.load(
@@ -52,6 +65,20 @@
         // A lot is going to happen here
         model = gltf.scene;
         let fileAnimations = gltf.animations;
+
+        // enabled the ability to cast and receive shadows.
+        model.traverse(o => {
+          if (o.isMesh) {
+            o.castShadow = true;
+            o.receiveShadow = true;
+            o.material = stacy_mtl;
+          }
+        });
+
+        // Set the models initial scale
+        model.scale.set(7, 7, 7);
+
+        model.position.y = -11;
 
         scene.add(model);
       },
